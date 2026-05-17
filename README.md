@@ -1,53 +1,141 @@
-# How to upload file on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=UnitTest-upload-file) for automation test in UnitTest 
+# Upload Files in Python UnitTest with Selenium on TestMu AI (Formerly LambdaTest)
 
-If you want to upload a file to the LambdaTest and use it in your UnitTest automation test, you can follow the below steps. You can refer to sample test repo [here](https://github.com/LambdaTest/Python-UnitTest-Selenium).
+<p align="center">
+  <a href="https://www.testmuai.com/"><img src="https://img.shields.io/badge/MADE%20BY%20TestMu%20AI-000000.svg?style=for-the-badge&labelColor=000" alt="Made by TestMu AI"></a>
+  <a href="https://pypi.org/project/selenium/"><img src="https://img.shields.io/pypi/v/selenium.svg?style=for-the-badge&labelColor=000000" alt="Selenium version"></a>
+  <a href="https://community.testmuai.com/"><img src="https://img.shields.io/badge/Join%20the%20community-blueviolet.svg?style=for-the-badge&labelColor=000000" alt="Community"></a>
+</p>
 
-# Steps:
+## Getting Started
 
-### Step 1: Upload the file to LamdbaTest using API
+[TestMu AI](https://www.testmuai.com/) (Formerly LambdaTest) is the world's first full-stack AI Agentic Quality Engineering platform that empowers teams to test intelligently, smarter, and ship faster. Built for scale, it offers a full-stack testing cloud with 10K+ real devices and 3,000+ browsers. With AI-native test management, MCP servers, and agent-based automation, TestMu AI supports Selenium, Appium, Playwright, and all major frameworks.
 
-Use the LambdaTest file upload API to upload the file to the backend -https://api.lambdatest.com/automation/api/v1/user-files
+With TestMu AI (Formerly LambdaTest), you can upload files to the cloud and use them in your Python UnitTest automation tests. This sample shows how to configure file uploads and reference them inside your test scripts.
 
+- [Sign up on TestMu AI](https://www.testmuai.com/register/) (Formerly LambdaTest).
+- Follow the [TestMu AI documentation](https://www.testmuai.com/support/docs/) (Formerly LambdaTest) for the full setup walkthrough.
 
-### Step 2: Pass file in capabilities
+### Prerequisites
 
-In the test file, you need to update the test capabilities and add the filename for the `lambda:userFiles` capability. For example, if two files with filenames `photo1.png` and `photo2.png`, it has to be passed like so in the capability:
+- Python 3.x and pip
+- A TestMu AI (Formerly LambdaTest) account with your username and access key
 
+### Setup
+
+Clone the sample repository and install dependencies:
+
+```bash
+git clone https://github.com/LambdaTest/Python-UnitTest-Selenium && cd Python-UnitTest-Selenium
+pip install -r requirements.txt
+```
+
+Set your credentials as environment variables.
+
+**macOS / Linux:**
+
+```bash
+export LT_USERNAME="YOUR_USERNAME"
+export LT_ACCESS_KEY="YOUR_ACCESS_KEY"
+```
+
+**Windows:**
+
+```bash
+set LT_USERNAME="YOUR_USERNAME"
+set LT_ACCESS_KEY="YOUR_ACCESS_KEY"
+```
+
+### Upload a file
+
+Use the TestMu AI (Formerly LambdaTest) file upload API to upload the file to the cloud:
+
+```
+https://api.lambdatest.com/automation/api/v1/user-files
+```
+
+### Configure capabilities
+
+In your test file, add the uploaded filename(s) to the `lambda:userFiles` capability:
 
 ```python
 desired_caps = {
-            'LT:Options': {
-                "build": "Python Demo",  # Change your build name here
-                "name": "Python Demo Test",  # Change your test name here
-                "platformName": "Windows 11",
-                "selenium_version": "4.0.0",
-                "lambda:userFiles": ["photo1.png","photo2.png"]
-            },
-            "browserName": "Chrome",
-            "browserVersion": "98.0",
-        }
-
+    'LT:Options': {
+        "build": "Python Demo",
+        "name": "Python Demo Test",
+        "platformName": "Windows 11",
+        "selenium_version": "4.0.0",
+        "lambda:userFiles": ["photo1.png", "photo2.png"]
+    },
+    "browserName": "Chrome",
+    "browserVersion": "98.0",
+}
 ```
 
-### Step 3: Use the file in your test
+### Use the file in your test
 
-The files can be used in your test like so:
+Reference the uploaded file by its path on the remote machine.
 
-* For Windows:
+**Windows:**
+
 ```python
 elm = driver.find_element_by_xpath("//input[@type='file']")
-elm.send_keys("C:\\Users\\ltuser\\Downloads\\photo1.png")
+elm.send_keys("C:\Users\ltuser\Downloads\photo1.png")
 ```
-* For MacOS:
+
+**macOS:**
+
 ```python
 elm = driver.find_element_by_xpath("//input[@type='file']")
 elm.send_keys("/Users/ltuser/Downloads/photo1.png")
 ```
-### Step 4: Run your test
+
+### Run tests
 
 ```bash
 python lambdatest_test.py
-```# Links:
+```
 
-[LambdaTest Community](http://community.lambdatest.com/)
+View results on your TestMu AI dashboard.
 
+## Contributions
+
+Contributions are welcome. Open an issue to discuss your idea before submitting a pull request. When reporting bugs, include your Python version, OS, and Selenium version.
+
+## TestMu AI (Formerly LambdaTest) Community
+
+Connect with testers and developers in the [TestMu AI Community](https://community.testmuai.com/). Ask questions, share what you are building, and discuss best practices in test automation and DevOps.
+
+## TestMu AI (Formerly LambdaTest) Certifications
+
+Earn free [TestMu AI Certifications](https://www.testmuai.com/certifications/) for testers, developers, and QA engineers. Validate your skills in Selenium, Cypress, Playwright, Appium, Espresso and more. Industry-recognized, shareable on LinkedIn, and built by practitioners, not marketers.
+
+## Learning Resources by TestMu AI (Formerly LambdaTest)
+
+Learn modern testing through tutorials, guides, videos, and weekly updates:
+
+* [TestMu AI Blog](https://www.testmuai.com/blog/)
+* [TestMu AI Learning Hub](https://www.testmuai.com/learning-hub/)
+* [TestMu AI on YouTube](https://www.youtube.com/@TestMuAI)
+* [TestMu AI Newsletter](https://www.testmuai.com/newsletter/)
+
+## LambdaTest is Now TestMu AI
+
+On **January 12, 2026**, [LambdaTest evolved to TestMu AI](https://www.testmuai.com/lambdatest-is-now-testmuai/), the world's first fully autonomous **Agentic AI Quality Engineering Platform**.
+
+Same team. Same infrastructure. Same customer accounts. All existing LambdaTest logins, scripts, capabilities, and integrations continue to work without change.
+
+👉 Find the new home for [LambdaTest](https://www.testmuai.com).
+
+### How LambdaTest Evolved into TestMu AI
+
+In 2017, we launched LambdaTest with a simple mission: make testing fast, reliable, and accessible. As LambdaTest grew, we expanded into Test Intelligence, Visual Regression Testing, Accessibility Testing, API Testing, and Performance Testing, covering the full depth of the testing lifecycle.
+
+As software development entered the AI era, testing had to evolve, too. We rebuilt the architecture to be AI-native from the ground up, with autonomous agents that **plan, author, execute, analyze, and optimize tests** while keeping humans in the loop. The platform integrates with your repos, CI, IDEs, and terminals, continuously learning from every code change and development signal.
+
+That evolution earned a new name: **TestMu AI**, built for an AI-first future of quality engineering. TestMu is not a new name for us. It is the name of our annual community conference, which has brought together 100,000+ quality engineers to discuss how AI would reshape testing, long before that became an industry norm.
+
+What started as a high-performance cloud testing platform has transformed into an AI-native, multi-agent system powering a connected, end-to-end quality layer. That evolution defined a new identity: LambdaTest evolved into TestMu AI, built for an AI-first future of quality engineering.
+
+## Support
+
+Got a question? Email [support@testmuai.com](mailto:support@testmuai.com) or chat with us 24x7 from our chat portal.
